@@ -4,5 +4,5 @@ data class Stream(
     val format: StreamFormat?,
     val url: String?,
     val title: String?,
-    val slots: List<Slot>?,
+    val slots: List<TvSlot>?,
 )

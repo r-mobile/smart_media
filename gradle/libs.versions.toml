@@ -1,5 +1,6 @@
 [versions]
 agp = "8.7.3"
+converterGson = "2.9.0"
 gson = "2.10.1"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
@@ -12,6 +13,7 @@ composeBom = "2024.04.01"
 appcompat = "1.7.0"
 material = "1.12.0"
 media3Exoplayer = "1.5.1"
+retrofitVersion = "2.9.0"
 webkit = "1.12.1"
 media3DatasourceOkhttp = "1.5.1"
 
@@ -43,6 +45,8 @@ hilt = { group = "com.google.dagger", name = "hilt-android", version = "2.50" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version = "2.50" }
 multidex = { group = "androidx.multidex", name = "multidex", version = "2.0.1" }
 androidx-media3-datasource-okhttp = { group = "androidx.media3", name = "media3-datasource-okhttp", version.ref = "media3DatasourceOkhttp" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -19,9 +19,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import kg.ram.outlinemedia.R
+import kg.ram.outlinemedia.domain.Client
 
 @Composable
-fun UserInfo() {
+fun UserInfo(client: Client?) {
     Column(
         modifier = Modifier
             .padding(4.dp)
@@ -43,8 +44,8 @@ fun UserInfo() {
 
         }
         Spacer(modifier = Modifier.height(4.dp))
-        Text("City: Bishkek")
-        Text("IP: 255.255.255.0")
-        Text("Organization: Kyrgyztelecom")
+        client?.city?.let { Text("City: $it") }
+        client?.ip?.let { Text("IP: $it") }
+        client?.org?.let { Text("Organization: $it") }
     }
 }

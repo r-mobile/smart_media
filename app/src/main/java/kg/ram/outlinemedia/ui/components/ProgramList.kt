@@ -19,9 +19,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import kg.ram.outlinemedia.R
+import kg.ram.outlinemedia.domain.TvSlot
 
 @Composable
-fun ProgramList() {
+fun ProgramList(slots: List<TvSlot>?) {
     Column(
         modifier = Modifier
             .padding(4.dp)
@@ -43,8 +44,9 @@ fun ProgramList() {
 
         }
         Spacer(modifier = Modifier.height(4.dp))
-        for (i in 1..5) {
-            Text("$i. Program")
+        slots?.forEach { slot ->
+            Text("${slot.name} (${slot.program})")
         }
+
     }
 }

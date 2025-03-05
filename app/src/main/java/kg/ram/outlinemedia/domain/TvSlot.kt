@@ -2,7 +2,7 @@ package kg.ram.outlinemedia.domain
 
 import java.util.Date
 
-data class Slot(
+data class TvSlot(
     val id: Int?,
     val startDate: Date?,
     val endDate: Date?,

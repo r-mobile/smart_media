@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("maven-publish")
 }
 
 android {
@@ -30,8 +31,19 @@ android {
     }
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            ///from(components[""])
+            groupId = "com.github.roman-a-marchenko"
+            artifactId = "outline_media"
+            version = "1.0.0"
+        }
+    }
+}
+
 dependencies {
-    implementation(files("libs/outline_sdk.aar"))
+    api(files("libs/outline_sdk.aar"))
     implementation(libs.coroutines)
     implementation(libs.okhttp)
     implementation(libs.androidx.webkit)
