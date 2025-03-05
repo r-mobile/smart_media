@@ -16,6 +16,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        flatDir {
+            dirs("out_proxy/libs")
+        }
     }
 }
 
@@ -23,3 +26,4 @@ rootProject.name = "Outline Media"
 include(":app")
 include(":out_proxy")
 include(":out_media")
+include(":outline_sdk")

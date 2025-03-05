@@ -31,6 +31,7 @@ android {
     }
 }
 
+
 publishing {
     publications {
         create<MavenPublication>("release") {
@@ -43,7 +44,7 @@ publishing {
 }
 
 dependencies {
-    api(files("libs/outline_sdk.aar"))
+    api(project(":outline_sdk"))
     implementation(libs.coroutines)
     implementation(libs.okhttp)
     implementation(libs.androidx.webkit)
