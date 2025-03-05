@@ -31,14 +31,15 @@ android {
     }
 }
 
-
-publishing {
-    publications {
-        create<MavenPublication>("release") {
-            ///from(components[""])
-            groupId = "com.github.roman-a-marchenko"
-            artifactId = "outline_media"
-            version = "1.0.0"
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.roman-a-marchenko"
+                artifactId = "outline_media"
+                version = "1.0.0"
+            }
         }
     }
 }

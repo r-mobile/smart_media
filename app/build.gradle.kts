@@ -48,7 +48,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":out_proxy"))
+    //implementation(project(":out_proxy"))
+    implementation("com.github.roman-a-marchenko:outline_media:0.0.2")
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
     implementation(libs.multidex)
