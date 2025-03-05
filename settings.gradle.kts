@@ -16,14 +16,27 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        flatDir {
-            dirs("out_proxy/libs")
-        }
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+
+rootDir.run {
+    listOf(
+        "gradle.properties",
+        "gradlew.bat",
+        "gradlew",
+        "gradle/wrapper/gradle-wrapper.jar",
+        "gradle/wrapper/gradle-wrapper.properties"
+    ).map { path ->
+        resolve(path)
+            .copyTo(
+                target = rootDir.resolve("outline_sdk").resolve(path),
+                overwrite = true
+            )
     }
 }
 
 rootProject.name = "Outline Media"
 include(":app")
 include(":out_proxy")
-include(":out_media")
-include(":outline_sdk")
+includeBuild("outline_sdk")

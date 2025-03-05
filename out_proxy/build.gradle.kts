@@ -45,7 +45,7 @@ afterEvaluate {
 }
 
 dependencies {
-    api(project(":outline_sdk"))
+    implementation("kg.ram.outline-sdk:outline_sdk:1.0.0")
     implementation(libs.coroutines)
     implementation(libs.okhttp)
     implementation(libs.androidx.webkit)
