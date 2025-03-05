@@ -12,17 +12,24 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kg.ram.outlinemedia.R
 import kg.ram.outlinemedia.domain.TvSlot
+import java.text.SimpleDateFormat
 
 @Composable
 fun ProgramList(slots: List<TvSlot>?) {
+
+    val dateFormat = remember { SimpleDateFormat("HH:mm") }
+
     Column(
         modifier = Modifier
             .padding(4.dp)
@@ -45,7 +52,12 @@ fun ProgramList(slots: List<TvSlot>?) {
         }
         Spacer(modifier = Modifier.height(4.dp))
         slots?.forEach { slot ->
-            Text("${slot.name} (${slot.program})")
+            Text(
+                text = "${dateFormat.format(slot.startDate)}: ${slot.program} | ${slot.name}",
+                fontSize = 12.sp,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
         }
 
     }
