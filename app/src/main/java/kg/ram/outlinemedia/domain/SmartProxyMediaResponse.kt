@@ -6,9 +6,5 @@ data class SmartProxyMediaResponse(
     val client: Client? = null,
     @SerializedName("config")
     val proxy: AppProxyConfig? = null,
-) {
-
-    val stream: Stream?
-        get() = proxy?.stream
-}
-
+    val stream: Stream? = null,
+)

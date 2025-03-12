@@ -36,7 +36,7 @@ rootDir.run {
     }
 }
 
-rootProject.name = "Outline Media"
+rootProject.name = "Smart Media"
 include(":app")
-include(":out_proxy")
+include(":smart_proxy")
 includeBuild("outline_sdk")
