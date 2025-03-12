@@ -68,9 +68,9 @@ fun getDefaultProxy(): AppProxy {
 Next, create a proxy manager: 
 
 ```kotlin
-    fun provideProxyManager(proxy: AppProxy): ProxyManager {  
-	    return ProxyManager(proxy)  
-	}
+fun provideProxyManager(proxy: AppProxy): ProxyManager {  
+	return ProxyManager(proxy)  
+}
 ```
 
 Once set up, you can interact with the ***ProxyManager***, which provides the following methods:
