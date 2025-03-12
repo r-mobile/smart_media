@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -52,17 +51,13 @@ fun ProgramList(slots: List<TvSlot>?) {
 
         }
         Spacer(modifier = Modifier.height(4.dp))
-        LazyColumn(content = {
-            slots?.forEach { slot ->
-                item {
-                    Text(
-                        text = "${dateFormat.format(slot.startDate)}: ${slot.program} | ${slot.name}",
-                        fontSize = 12.sp,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-            }
-        })
+        slots?.forEach { slot ->
+            Text(
+                text = "${dateFormat.format(slot.startDate)}: ${slot.program} | ${slot.name}",
+                fontSize = 12.sp,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
     }
 }

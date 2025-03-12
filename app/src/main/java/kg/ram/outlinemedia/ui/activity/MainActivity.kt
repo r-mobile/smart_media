@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -32,7 +34,6 @@ import androidx.compose.ui.unit.sp
 import androidx.media3.common.PlaybackException
 import androidx.media3.exoplayer.ExoPlayer
 import dagger.hilt.android.AndroidEntryPoint
-import kg.ram.out_proxy.domain.StreamData
 import kg.ram.outlinemedia.R
 import kg.ram.outlinemedia.domain.ConnectState
 import kg.ram.outlinemedia.mappers.toStreamData
@@ -113,7 +114,10 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun MediaContent(modifier: Modifier, state: AppState) {
-        Column(modifier = modifier.fillMaxSize()) {
+        val scrollState = rememberScrollState()
+        Column(modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState)) {
             VideoPlayer(
                 streamData = state.stream?.toStreamData(),
                 tvShowName = state.stream?.title,

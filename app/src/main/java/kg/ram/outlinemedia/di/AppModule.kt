@@ -24,17 +24,21 @@ internal object AppModule {
     //region Retrofit
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
+    fun provideHttpClient(): OkHttpClient {
         val logging = HttpLoggingInterceptor().apply {
             setLevel(HttpLoggingInterceptor.Level.BODY)
         }
 
-        val okHttp = OkHttpClient.Builder()
+        return OkHttpClient.Builder()
             .addInterceptor(logging)
             .build()
+    }
 
+    @Provides
+    @Singleton
+    fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .client(okHttp)
+            .client(client)
             .baseUrl(Const.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
