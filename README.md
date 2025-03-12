@@ -35,10 +35,18 @@ dependencyResolutionManagement {
 }
 ```
 
-Additionally, include the dependency in your project or module:
+Include the dependency in your project or module:
+
+***build.gradle***
+
+```gradle
+implementation 'com.github.r-mobile:smart_media:X.Y.Z'
+```
+
+or ***build.gradle.kts***
 
 ```kotlin
-implementation 'com.github.r-mobile:smart_media:0.0.5'
+implementation("com.github.r-mobile:smart_media:X.Y.Z")
 ```
 
 You can find the latest version of the library on [JitPack](https://jitpack.io/#r-mobile/smart_media/)
@@ -87,9 +95,9 @@ ExoPlayer.Builder(context).build().playStream(streamData, proxy)
 The ***playStream(...)*** function accepts three parameters:
 
 ``` 
-1.  An implementation of *StreamData*, which contains the stream URL and stream type.
-2.  An implementation of *net.Proxy* from *ProxyManager*.
-3.  A *Boolean* flag indicating whether the media should start playing immediately upon player readiness.
+1.  An implementation of StreamData, which contains the stream URL and stream type.
+2.  An implementation of net.Proxy from ProxyManager.
+3.  A Boolean flag indicating whether the media should start playing immediately upon player readiness.
 ```
 
 Once configured, media streaming will commence.
