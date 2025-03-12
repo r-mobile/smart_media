@@ -10,9 +10,12 @@ import kg.ram.out_proxy.data.outline.OutlineProxyImpl
 import kg.ram.out_proxy.domain.AppProxy
 import kg.ram.outlinemedia.network.SmartProxyApi
 import kg.ram.outlinemedia.utils.Const
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -22,7 +25,16 @@ internal object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
+        val logging = HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        }
+
+        val okHttp = OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .build()
+
         return Retrofit.Builder()
+            .client(okHttp)
             .baseUrl(Const.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

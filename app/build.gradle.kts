@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.multidex)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
+    implementation(libs.retrofit.logger)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

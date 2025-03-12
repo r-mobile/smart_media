@@ -11,6 +11,7 @@ lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.0"
 composeBom = "2024.04.01"
 appcompat = "1.7.0"
+loggingInterceptor = "4.12.0"
 material = "1.12.0"
 media3Exoplayer = "1.5.1"
 retrofitVersion = "2.9.0"
@@ -47,6 +48,7 @@ multidex = { group = "androidx.multidex", name = "multidex", version = "2.0.1" }
 androidx-media3-datasource-okhttp = { group = "androidx.media3", name = "media3-datasource-okhttp", version.ref = "media3DatasourceOkhttp" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
 retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+retrofit-logger = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
