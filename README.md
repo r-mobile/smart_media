@@ -1,19 +1,23 @@
 ## Smart Proxy
 
-The **Smart Proxy** library enables quick and efficient integration of media streaming capabilities into your application using a proxy to bypass content restrictions in your country.
+[![](https://jitpack.io/v/r-mobile/smart_media.svg)](https://jitpack.io/#r-mobile/smart_media)
 
-Currently, the library utilizes [Outline Proxy](https://getoutline.org/) as its proxy solution. In future updates, we plan to add alternative proxy services for even greater flexibility. To facilitate seamless player implementation, the library provides extensions for [ExoPlayer](https://developer.android.com/media/media3/exoplayer), allowing you to stream media content effortlessly. The library is independent of the architecture or UI framework you are using.
+The ***Smart Proxy*** library enables quick and efficient integration of media streaming capabilities into your application using a proxy to bypass content restrictions in your country.
+
+Currently, the library utilizes [Outline Proxy](https://github.com/Jigsaw-Code/outline-sdk) as its proxy solution. In future updates, we plan to add alternative proxy services for even greater flexibility. To facilitate seamless player implementation, the library provides extensions for [ExoPlayer](https://developer.android.com/media/media3/exoplayer), allowing you to stream media content effortlessly. The library is independent of the architecture or UI framework you are using.
 
 ## Installation
 To integrate the library into your application, add the following repository:
 
 ***build.gradle***
 
-```kotlin
-allprojects {
+```gradle
+dependencyResolutionManagement {
+	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 	repositories {
-		//...
-		maven { url "https://jitpack.io" }
+		//......
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
 	}
 }
 ```
@@ -21,10 +25,11 @@ allprojects {
 or ***settings.gradle.kts***
 
 ```kotlin
-dependencyResolutionManagement {  
-	//...
-	repositories {  
-		//...
+dependencyResolutionManagement {
+	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	repositories {
+		//....
+		mavenCentral()
 		maven { url = uri("https://jitpack.io") }
 	}
 }
@@ -33,14 +38,14 @@ dependencyResolutionManagement {
 Additionally, include the dependency in your project or module:
 
 ```kotlin
-implementation("com.github.roman-a-marchenko:outline_media:0.0.5")
+implementation 'com.github.r-mobile:smart_media:0.0.5'
 ```
 
-You can find the latest version of the library on [JitPack](https://jitpack.io)
+You can find the latest version of the library on [JitPack](https://jitpack.io/#r-mobile/smart_media/)
 
 ## Configuration
 
-To enable proxy support in your application, you can either use the default _OutlineProxy_ settings or configure it with custom parameters.
+To enable proxy support in your application, you can either use the default *OutlineProxy* settings or configure it with custom parameters.
 
 The following example demonstrates how to initialize and start the proxy using Outline with its default configuration:
 
@@ -60,7 +65,7 @@ Next, create a proxy manager:
 	}
 ```
 
-Once set up, you can interact with the **_ProxyManager_**, which provides the following methods:
+Once set up, you can interact with the ***ProxyManager***, which provides the following methods:
 
 ```kotlin
 fun start() // Starts the proxy with the predefined configuration
@@ -71,31 +76,31 @@ fun getPort(): Int  // Returns the proxy port
 fun getProxy(): Proxy // Returns a net.Proxy object for use in networking layers
 ```
 
-Once the **_ProxyManager_** is configured, simply call _start()_, and the _Outline Proxy_ will be ready to use.
+Once the ***ProxyManager*** is configured, simply call *start()*, and the *Outline Proxy* will be ready to use.
 
-To enable media playback through _ExoPlayer_ using a proxy, apply the extension function to _ExoPlayer_:
+To enable media playback through *ExoPlayer* using a proxy, apply the extension function to *ExoPlayer*:
 
 ```kotlin
 ExoPlayer.Builder(context).build().playStream(streamData, proxy)
 ```
 
-The **_playStream(…)_** function accepts three parameters:
+The ***playStream(...)*** function accepts three parameters:
 
 ``` 
-1.  An implementation of _StreamData_, which contains the stream URL and stream type.
-2.  An implementation of _net.Proxy_ from _ProxyManager_.
-3.  A _Boolean_ flag indicating whether the media should start playing immediately upon player readiness.
+1.  An implementation of *StreamData*, which contains the stream URL and stream type.
+2.  An implementation of *net.Proxy* from *ProxyManager*.
+3.  A *Boolean* flag indicating whether the media should start playing immediately upon player readiness.
 ```
 
 Once configured, media streaming will commence.
 
 ## Updating configuration
 
-If you wish to apply custom settings to Outline, simply update the configuration using the _updateConfig(config: ProxyConfig)_ function within **_ProxyManager_**. The new configuration will be automatically applied, and the proxy will restart with the updated settings.
+If you wish to apply custom settings to Outline, simply update the configuration using the *updateConfig(config: ProxyConfig)* function within ***ProxyManager***. The new configuration will be automatically applied, and the proxy will restart with the updated settings.
 
 ## Custom Proxies
 
-The library allows you to implement custom proxies for your project and integrate them with **_ProxyManager_**. To do this, implement the _AppProxy_ interface and define the necessary methods.
+The library allows you to implement custom proxies for your project and integrate them with ***ProxyManager***. To do this, implement the *AppProxy* interface and define the necessary methods.
 
 Example:
 
