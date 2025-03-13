@@ -4,7 +4,7 @@
 
 The ***Smart Proxy*** library enables quick and efficient integration of media streaming capabilities into your application using a proxy to bypass content restrictions in your country.
 
-Currently, the library utilizes [Outline Proxy](https://github.com/Jigsaw-Code/outline-sdk) as its proxy solution. In future updates, we plan to add alternative proxy services for even greater flexibility. To facilitate seamless player implementation, the library provides extensions for [ExoPlayer](https://developer.android.com/media/media3/exoplayer), allowing you to stream media content effortlessly. The library is independent of the architecture or UI framework you are using.
+Currently, the library utilizes [Outline SDK](https://github.com/Jigsaw-Code/outline-sdk) as its proxy solution. In future updates, we plan to add alternative proxy services for even greater flexibility. To facilitate seamless player implementation, the library provides extensions for [ExoPlayer](https://developer.android.com/media/media3/exoplayer), allowing you to stream media content effortlessly. The library is independent of the architecture or UI framework you are using.
 
 ## Installation
 To integrate the library into your application, add the following repository:
@@ -53,9 +53,12 @@ You can find the latest version of the library on [JitPack](https://jitpack.io/#
 
 ## Configuration
 
-To enable proxy support in your application, you can either use the default *OutlineProxy* settings or configure it with custom parameters.
+To enable proxy support in your application, you can either use the default *OutlineProxy* settings or configure it with custom parameters. 
+You can view the settings for the default connection strategy [here](https://github.com/r-mobile/smart_media/blob/main/smart_proxy/src/main/java/kg/ram/out_proxy/utils/OutlideDefaultConfig.kt).
+You can learn more about configuring Outline SDK [here](https://github.com/Jigsaw-Code/outline-sdk/tree/main/x/mobileproxy#configure-and-run-the-local-proxy-forwarder).
 
-The following example demonstrates how to initialize and start the proxy using Outline with its default configuration:
+
+The following example demonstrates how to initialize and start the proxy using OutlineProxy with its default configuration:
 
 ```kotlin
 fun getDefaultProxy(): AppProxy {
@@ -64,6 +67,7 @@ fun getDefaultProxy(): AppProxy {
 	return OutlineProxyImpl(defaultConfig)
 }
 ```
+*defaultMediaHost* is used for the correct selection of a strategy in [Outline SDK](https://github.com/Jigsaw-Code/outline-sdk/tree/main/x/mobileproxy#using-the-smart-proxy).
 
 Next, create a proxy manager: 
 
@@ -104,7 +108,7 @@ Once configured, media streaming will commence.
 
 ## Updating configuration
 
-If you wish to apply custom settings to Outline, simply update the configuration using the *updateConfig(config: ProxyConfig)* function within ***ProxyManager***. The new configuration will be automatically applied, and the proxy will restart with the updated settings.
+If you wish to apply custom settings to Outline Sdk, simply update the configuration using the *updateConfig(config: ProxyConfig)* function within ***ProxyManager***. The new configuration will be automatically applied, and the proxy will restart with the updated settings.
 
 ## Custom Proxies
 
