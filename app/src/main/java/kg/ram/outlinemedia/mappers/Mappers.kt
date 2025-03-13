@@ -8,7 +8,8 @@ import kg.ram.outlinemedia.domain.StreamFormat
 fun StreamFormat.toStreamType(): StreamType {
     return when (this) {
         StreamFormat.video -> StreamType.HLS
-        StreamFormat.audio -> StreamType.AUDIO
+        StreamFormat.audio -> StreamType.HLS
+        else -> StreamType.AUDIO
     }
 }
 
