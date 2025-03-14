@@ -3,6 +3,7 @@ package kg.ram.outlinemedia.repo
 import kg.ram.out_proxy.data.ProxyManager
 import kg.ram.out_proxy.data.outline.OutlineConfigImpl
 import kg.ram.outlinemedia.domain.AppProxyConfig
+import kg.ram.outlinemedia.network.FallbackConfigApi
 import kg.ram.outlinemedia.network.SmartProxyApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -11,11 +12,16 @@ import javax.inject.Inject
 
 class MainRepo @Inject constructor(
     private val _api: SmartProxyApi,
+    private val _fallbackApi: FallbackConfigApi,
     private val _proxyManager: ProxyManager
 ) {
 
     suspend fun getSmartProxyMedia() = withContext(Dispatchers.IO) {
-        _api.getSmartProxyMedia()
+        try {
+            _api.getSmartProxyMedia()
+        } catch (e: Exception) {
+            _fallbackApi.getSmartProxyMedia()
+        }
     }
 
     suspend fun updateProxyConfig(url: String?, proxy: AppProxyConfig?): Proxy {
@@ -24,10 +30,6 @@ class MainRepo @Inject constructor(
             _proxyManager.updateConfig(outlineConfig)
         }
         return _proxyManager.getProxy()
-    }
-
-    suspend fun startProxyWithDefaultConfig() {
-        _proxyManager.start()
     }
 
     suspend fun stopProxy() {

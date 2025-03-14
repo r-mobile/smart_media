@@ -19,18 +19,6 @@ class MainVm @Inject constructor(private val _repo: MainRepo) : ViewModel() {
     private val _state = MutableStateFlow(AppState())
     val state = _state.asStateFlow()
 
-    init {
-        startProxyWithDefaultConfig()
-    }
-
-    private fun startProxyWithDefaultConfig() = viewModelScope.launch {
-        try {
-            _repo.startProxyWithDefaultConfig()
-        } catch (e: Exception) {
-            handleException(e)
-        }
-    }
-
     fun fetchData() = viewModelScope.launch {
         _state.value = AppState()
         try {

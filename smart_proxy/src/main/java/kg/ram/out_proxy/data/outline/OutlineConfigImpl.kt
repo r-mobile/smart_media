@@ -21,7 +21,15 @@ data class OutlineConfigImpl(
      * Get target host from stream url.
      * @return host
      */
-    fun getTargetHost() = Uri.parse(targetUrl).host
+    fun getTargetHost(): String {
+        var hostString = ""
+        val hosts = targetUrl.split("\n")
+        hosts.forEachIndexed { index, s ->
+            hostString += Uri.parse(s).host
+            if(index != hosts.size - 1) hostString += "\n"
+        }
+        return hostString
+    }
 
     /**
      * Get config as json string.
