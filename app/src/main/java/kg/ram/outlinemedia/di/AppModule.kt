@@ -28,7 +28,7 @@ internal object AppModule {
     @Provides
     @Singleton
     fun provideOutlineProxy(): AppProxy {
-        val defaultConfig = OutlineConfigImpl.default(Const.DEFAULT_URLS)
+        val defaultConfig = OutlineConfigImpl.default(Const.DEFAULT_URL)
         return OutlineProxyImpl(defaultConfig)
     }
 
